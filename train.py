@@ -143,7 +143,7 @@ os.makedirs("./fontaine_weights", exist_ok=True)
 model.save_pretrained("./fontaine_weights")
 config.save_pretrained("./fontaine_weights")
 shutil.copy("tokenizer.json", "./fontaine_weights/tokenizer.json")
-for f in ("modeling_fontaine.py", "configuration_fontaine.py"):
+for f in ("modeling_fontaine.py", "configuration_fontaine.py", "README.md"):
     shutil.copy(f, f"./fontaine_weights/{f}")
 
 print(f"Pushing to {HF_REPO}...")

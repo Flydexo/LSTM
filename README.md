@@ -140,6 +140,11 @@ Device   : CUDA
 
 ---
 
+## Links
+
+- [GitHub — training code & architecture](https://github.com/Flydexo/LSTM)
+- [Dataset — flydexo/tinyfontaine](https://huggingface.co/datasets/flydexo/tinyfontaine)
+
 ## Citation
 
 ```bibtex
