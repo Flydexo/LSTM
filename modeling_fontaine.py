@@ -11,6 +11,19 @@ class FontaineLM(PreTrainedModel):
     config_class = FontaineConfig
     base_model_prefix = "lstm"
     supports_gradient_checkpointing = False
+    _tied_weights_keys = {"fc.weight": None}  # v5: dict, key = weight to drop on save
+
+    def get_input_embeddings(self):
+        return self.embedding
+
+    def set_input_embeddings(self, value):
+        self.embedding = value
+
+    def get_output_embeddings(self):
+        return self.fc
+
+    def set_output_embeddings(self, value):
+        self.fc = value
 
     def __init__(self, config: FontaineConfig):
         super().__init__(config)

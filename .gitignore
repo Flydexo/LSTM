@@ -26,6 +26,7 @@ ENV/
 *.pkl
 *.pt
 *.pth
+fontaine_checkpoint.pt
 *.safetensors
 fontaine_weights/
 
