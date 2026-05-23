@@ -1,0 +1,14 @@
+{
+  "model_type": "fontaine",
+  "vocab_size": 1500,
+  "n_hidden": 256,
+  "n_layers": 3,
+  "p_dropout": 0.4,
+  "seq_len": 72,
+  "bos_token_id": 1,
+  "eos_token_id": 2,
+  "auto_map": {
+    "AutoConfig": "configuration_fontaine.FontaineConfig",
+    "AutoModelForCausalLM": "modeling_fontaine.FontaineLM"
+  }
+}
