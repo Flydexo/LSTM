@@ -132,6 +132,7 @@ shutil.copy("tokenizer.json", "./fontaine_weights/tokenizer.json")
 
 print(f"Pushing to {HF_REPO}...")
 api = HfApi()
+api.create_repo(HF_REPO, repo_type="model", exist_ok=True)
 api.upload_folder(
     folder_path="./fontaine_weights",
     repo_id=HF_REPO,
