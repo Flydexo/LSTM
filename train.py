@@ -1,13 +1,13 @@
 """Training script for FontaineLM — run this on a GPU machine, then push to HF Hub."""
 
-import uuid
 import torch
 import torch.nn as nn
 from tokenizers import Tokenizer
 from datasets import load_dataset
 from huggingface_hub import HfApi
+import matplotlib
+matplotlib.use("Agg")  # no display server needed on a headless GPU server
 import matplotlib.pyplot as plt
-from IPython.display import clear_output
 
 from configuration_fontaine import FontaineConfig
 from modeling_fontaine import FontaineLM
@@ -108,7 +108,6 @@ for epoch in range(EPOCHS):
     train_losses.append(train_loss)
     valid_losses.append(valid_loss)
 
-    clear_output(wait=True)
     plt.figure(figsize=(10, 5))
     plt.plot(range(1, epoch + 2), train_losses, label="Train", color="#1f77b4", linewidth=2)
     plt.plot(range(1, epoch + 2), valid_losses, label="Valid", color="#ff7f0e", linewidth=2)
@@ -119,7 +118,9 @@ for epoch in range(EPOCHS):
     plt.ylabel("Cross Entropy Loss")
     plt.legend()
     plt.grid(True, linestyle="--", alpha=0.7)
-    plt.show()
+    plt.savefig(f"loss_epoch_{epoch+1}.png", dpi=80, bbox_inches="tight")
+    plt.close()
+    print(f"Epoch {epoch+1}/{EPOCHS} | train={train_loss:.4f} | valid={valid_loss:.4f} | lr={scheduler.get_last_lr()[0]:.6f}")
 
 # ── Save & push ───────────────────────────────────────────────────────────────
 print("Saving model...")
